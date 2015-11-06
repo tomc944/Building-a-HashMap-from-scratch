@@ -9,12 +9,22 @@ class HashSet
   end
 
   def insert(key)
+    resize! if num_buckets <= count
+
+    index = key.hash % num_buckets
+    @store[index] << key
+    @count += 1
   end
 
   def include?(key)
+    index = key.hash % num_buckets
+    @store[index].include?(key)
   end
 
   def remove(key)
+    index = key.hash % num_buckets
+    @store[index].delete(key)
+    @count -= 1
   end
 
   private
@@ -28,5 +38,12 @@ class HashSet
   end
 
   def resize!
+    temp_store = @store.flatten(1)
+    @store = Array.new(num_buckets * 2) { Array.new }
+
+    temp_store.each do |value|
+      index = value.hash % num_buckets
+      @store[index] << value
+    end
   end
 end

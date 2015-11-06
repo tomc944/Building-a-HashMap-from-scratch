@@ -4,15 +4,12 @@ end
 
 class Array
   def hash
-    if empty?
-      return 685041758907420958468234058492758902375.hash
-    end
     sum = 0
     each_with_index do |value, index|
-      current = value % (index + 1)
-      sum += current.hash
+      current = value.hash ^ (index + 1)
+      sum += current
     end
-    sum
+    sum ^ 685041758907420958468234058492758902375
   end
 end
 
@@ -33,7 +30,7 @@ class Hash
     end
     sum = 0
     self.each do |key, value|
-      current = key.hash + value.hash
+      current = key.hash ^ value.hash
       sum += current
     end
     sum

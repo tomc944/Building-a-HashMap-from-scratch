@@ -21,9 +21,7 @@ class MaxIntSet
   private
 
   def is_valid?(num)
-    return false unless @store.size > num
-    return false if num < 0
-    return true
+    @store.size > num && num >= 0
   end
 
   def validate!(num)
@@ -72,6 +70,8 @@ class ResizingIntSet
   end
 
   def insert(num)
+    return if include?(num)
+
     resize! if num_buckets <= count
 
     index = num % num_buckets
