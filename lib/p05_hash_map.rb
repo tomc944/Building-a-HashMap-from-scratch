@@ -76,8 +76,8 @@ class HashMap
 
   end
 
-  def get_index(value)
-    index = value.hash % num_buckets
+  def get_index(key)
+    index = key.hash % num_buckets
   end
 
   def bucket(key)
