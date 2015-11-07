@@ -10,6 +10,7 @@ class Link
   def to_s
     "#{@key}, #{@val}"
   end
+
 end
 
 class LinkedList
@@ -91,6 +92,8 @@ class LinkedList
       current_link = current_link.next
     end
   end
+
+
 
   # uncomment when you have `each` working and `Enumerable` included
   # def to_s

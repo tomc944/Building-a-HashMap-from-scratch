@@ -9,6 +9,7 @@ class HashSet
   end
 
   def insert(key)
+    return if include?(key)
     resize! if num_buckets <= count
 
     index = key.hash % num_buckets
@@ -22,6 +23,7 @@ class HashSet
   end
 
   def remove(key)
+    return unless include?(key)
     index = key.hash % num_buckets
     @store[index].delete(key)
     @count -= 1

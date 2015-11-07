@@ -18,21 +18,18 @@ class String
     ascii_nums = self.split("").map do |char|
       char.ord
     end
-    ascii_nums.hash
+    ascii_nums.hash ^ 7894025742905874392850432890583457
 
   end
 end
 
 class Hash
   def hash
-    if empty?
-      return 7890371589037590137571309857358490277.hash
-    end
     sum = 0
     self.each do |key, value|
       current = key.hash ^ value.hash
       sum += current
     end
-    sum
+    sum ^ 7890371589037590137571309857358490277
   end
 end
